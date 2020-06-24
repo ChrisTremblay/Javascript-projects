@@ -1,14 +1,24 @@
 class Timer{
-    constructor(durationInput, startButton, pauseButton){
-        this.durationInput = durationInput;
-        this.startButton = startButton;
-        this.pauseButton = pauseButton;
+  constructor(durationInput, startButton, pauseButton){
+    this.durationInput = durationInput;
+    this.startButton = startButton;
+    this.pauseButton = pauseButton;
 
-        this.startButton.addEventListener('click', this.start);
-    }
-    start = () => {
-        console.log('Start');
-    }
+    this.startButton.addEventListener('click', this.start);
+    this.pauseButton.addEventListener('click', this.pause);
+  }
+  start = () => {
+    this.tick();
+    this.intervalID = setInterval(this.tick, 1000);
+  };
+  
+  pause = () => {
+    clearInterval(this.intervalID);
+  }
+  
+  tick = () => {
+    console.log("TICK TOCK");
+  };
 }
 
 const durationInput = document.querySelector("#duration");
